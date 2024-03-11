@@ -27,9 +27,6 @@ int[] andrewScores = new int[] { 92, 89, 81, 96, 90, 89 };
 int[] emmaScores = new int[] { 90, 85, 87, 98, 68, 89, 89, 89 };
 int[] loganScores = new int[] { 90, 95, 87, 88, 96, 96 };
 
-int currentStudentExam = 0;
-int currentStudentExtra = 0;
-
 int[] studentScores = new int[10];
 
 string currentStudentLetterGrade = "";
@@ -68,6 +65,16 @@ foreach (string name in studentNames)
 
     int gradedAssignments = 0;
 
+    int sumStudentExam = 0;
+
+    int sumStudentExtra = 0;
+    
+    decimal currentStudentExam = 0;
+
+    int currentStudentExtra = 0;
+
+    decimal currentStudentPts = 0;
+
     /* 
     the inner foreach loop sums assignment scores
     extra credit assignments are worth 10% of an exam score
@@ -76,13 +83,18 @@ foreach (string name in studentNames)
     {
         gradedAssignments += 1;
 
-        if (gradedAssignments <= examAssignments)
+        if (gradedAssignments <= examAssignments) {
             sumAssignmentScores += score;
-
+            sumStudentExam += score;
+        }
+            
         else
             sumAssignmentScores += score / 10;
+            sumStudentExtra += score / 10;
     }
+    //extra = graded - exam
 
+    
     currentStudentGrade = (decimal)(sumAssignmentScores) / examAssignments;
 
     if (currentStudentGrade >= 97)
